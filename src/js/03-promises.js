@@ -28,13 +28,13 @@ function submitForm(event) {
   let timeStep = Number(stepDelay.value);
   let delay = Number(firstDelay.value);
 
-  
-  for (let i = 1; i <= valueAmount; i += 1) {
-  delay += timeStep;
-  createPromise(i, delay).then(({ position, delay }) => {
-    console.log(Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`));
-  })
-  .catch(({ position, delay }) => {
-    console.log(Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`));
-  })}
+  for (let i = 0; i <= valueAmount; i += 1) {
+    return createPromise(i, delay).then(({ position, delay }) => {
+      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    })
+      .catch(({ position, delay }) => {
+      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      })
+    delay += timeStep;
+  }
 }
