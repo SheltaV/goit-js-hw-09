@@ -28,8 +28,8 @@ function submitForm(event) {
   let timeStep = Number(stepDelay.value);
   let delay = Number(firstDelay.value);
 
-  for (let i = 0; i <= valueAmount; i += 1) {
-    return createPromise(i, delay).then(({ position, delay }) => {
+  for (let i = 1; i <= valueAmount; i += 1) {
+    createPromise(i, delay).then(({ position, delay }) => {
       Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
     })
       .catch(({ position, delay }) => {
